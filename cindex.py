@@ -1329,6 +1329,21 @@ class Cursor(Structure):
 
         res._tu = tu
         return res
+    @property
+    def access_specifier(self):
+        return conf.lib.clang_getCXXAccessSpecifier(self)
+
+    @property
+    def is_static(self):
+        return conf.lib.clang_CXXMethod_isStatic(self)
+
+    @property
+    def is_virtual(self):
+        return conf.lib.clang_CXXMethod_isVirtual(self)
+
+    @property
+    def is_virtual_base(self):
+        return conf.lib.clang_isVirtualBase(self)
 
     @staticmethod
     def from_cursor_result(res, fn, args):
