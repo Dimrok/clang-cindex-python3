@@ -555,6 +555,9 @@ class CursorKind(object):
     def __repr__(self):
         return 'CursorKind.%s' % (self.name,)
 
+    def __str__(self):
+        return self.name.lower()
+
 # FIXME: Is there a nicer way to expose this enumeration? We could potentially
 # represent the nested structure, or even build a class hierarchy. The main
 # things we want for sure are (a) simple external access to kinds, (b) a place
@@ -1383,6 +1386,11 @@ class TypeKind(object):
     def __repr__(self):
         return 'TypeKind.%s' % (self.name,)
 
+    def __str__(self):
+        if (self.name == "INVALID"):
+            return ''
+        return self.name.lower()
+
 TypeKind.INVALID = TypeKind(0)
 TypeKind.UNEXPOSED = TypeKind(1)
 TypeKind.VOID = TypeKind(2)
@@ -1610,6 +1618,9 @@ class Type(Structure):
 
     def __ne__(self, other):
         return not self.__eq__(other)
+
+    def __str__(self):
+        return str(self.kind)
 
 ## CIndex Objects ##
 
